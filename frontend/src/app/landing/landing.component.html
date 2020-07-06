@@ -1,0 +1,138 @@
+<main>
+  <div class="position-relative">
+    <!-- shape Hero -->
+    <section class="section section-lg section-shaped pb-250">
+      <div class="shape shape-style-1 shape-default">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    
+      <!-- SVG separator -->
+      <div class="separator separator-bottom separator-skew">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </section>
+    <!-- 1st Hero Variation -->
+  </div>
+  <section class="section section-lg pt-lg-0 mt--200">
+    <div class="container">
+        <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
+          <ngb-tab>
+            <ng-template ngbTabTitle>
+              <i class="ni ni-cloud-upload-96 mr-2"></i> text
+            </ng-template>
+              <ng-template ngbTabContent>
+                <div class="row  justify-content-center">
+
+                    <div class="card-body col-md-8 " >
+                      <div class="icon icon-shape icon-shape-warning rounded-circle mb-4"  style="margin-right: 10 px ;">
+                        <i class="ni ni-bulb-61"></i> 
+                      </div> <span class="text-warning  "> What sentence you want to guess its emotions ? </span>
+                      <br>
+                      <form  class="example-form  " #f="ngForm" (ngSubmit)="onSubmit(f)"  >                
+                        <mat-form-field class="example-full-width" [style.width.px]=600 >
+                          <mat-label>Please enter your text </mat-label>
+                          <textarea name="text" ngModel  matInput [style.height.px]=150 ></textarea>
+                        </mat-form-field>
+                        <br>
+                          <button class="btn btn-block btn-warning mb-3" (click)="open(classic2, 'Notification', '')">
+                            ENJOY!
+                          </button>
+                          <ng-template #classic2 let-c="close" let-d="dismiss">
+                            <div class="modal-content bg-gradient-danger">
+                              <div class="modal-header">
+                                <h6 class="modal-title" id="modal-title-notification">Your attention is required</h6>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d('Cross click')">
+                                  <span aria-hidden="true">×</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="py-3 text-center">
+                                  <p *ngIf="this.ReceivedData.prediction == '' ; else Display">Loading Prediction data...</p>
+                                  <ng-template #Display> 
+                                    <div *ngIf="ReceivedData.Prediction == 'anger'">
+                                      <!-- the same view can be shown in more than one case -->
+                                      <img [style.width.%]=50 src="../../assets/img/angry.png">
+                                    </div>
+                                    <div *ngIf="ReceivedData.Prediction == 'happy'">
+                                      <!-- the same view can be shown in more than one case -->
+                                      <img [style.width.%]=50 src="../../assets/img/happy.png">
+                                    </div>
+                                    <div *ngIf="ReceivedData.Prediction == 'sad'">
+                                      <!-- the same view can be shown in more than one case -->
+                                      <img [style.width.%]=50 src="../../assets/img/sad.png">
+                                    </div>
+                                    <div *ngIf="ReceivedData.Prediction == 'hate'">
+                                      <!-- the same view can be shown in more than one case -->
+                                      <img [style.width.%]=50 src="../../assets/img/cursing.png">
+                                    </div>
+                                    <div *ngIf="ReceivedData.Prediction == 'neutral'">
+                                      <!-- the same view can be shown in more than one case -->
+                                      <img [style.width.%]=50 src="../../assets/img/neutral.png">
+                                    </div>
+                                    <h4 class="heading mt-4"> {{ ReceivedData.Prediction }} </h4>
+                                  </ng-template>
+
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-white">Ok, Got it</button>
+                                <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal" (click)="c('Close click')">Close</button>
+                              </div>
+                            </div>
+                          </ng-template>   
+                  </form>
+                     
+            </div>
+            
+        
+            </div>
+              </ng-template>
+          </ngb-tab>
+          <ngb-tab>
+            <ng-template ngbTabTitle >
+              <i class="ni ni-cloud-upload-96 mr-2"></i> upload file
+            </ng-template>
+              <ng-template ngbTabContent>
+            
+              <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+                <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
+              </div>
+                <div  class="files-list" *ngFor="let file of files;let i=index">
+                  <p>{{ file }}</p>
+                  <button class="delete-file" (click)="deleteAttachment(i)">
+                    <img src="../../assets/Recycle_Bin_Full.png">
+                  </button>
+                </div>
+                <div class="col-lg-5">
+                  <div class="progress-wrapper">
+                    <div class="progress-info">
+                      <div class="progress-label">
+                        <span>Task completed</span>
+                      </div>
+                      <div class="progress-percentage">
+                        <span>40%</span>
+                      </div>
+                    </div>
+                    <ngb-progressbar type="default" [value]="25"></ngb-progressbar>
+                  </div>
+                
+                </div>
+              </ng-template>
+          </ngb-tab>
+      </ngb-tabset>
+           
+      
+    </div>
+  </section>
+ 
+</main>
